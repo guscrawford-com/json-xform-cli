@@ -1,6 +1,6 @@
 # 🔀 json-xform-cli 🖥
 
-**@guscrawford.com/json-xform** *JSON Transform*
+**@guscrawford.com/json-xform-cli** *JSON Transform*
 
 Manipulate JSON files statically **on the command-line**
 
