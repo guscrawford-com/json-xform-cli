@@ -1,4 +1,5 @@
 {
+  "deprecated":"this file is no longer needed as we build our transformer and transform package.json directly",
   "name": "@guscrawford.com/json-xform-cli",
   "version": "0.0.1-alpha",
   "description": "A cli that transforms JSON",
