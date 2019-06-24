@@ -17,7 +17,7 @@ $>yarn add @guscrawford/json-xform-cli -D
 ```
 
 ```
-$>xform package.json
+$>xform default package.json
 ```
 
 ## Develop & Contribute
@@ -26,4 +26,6 @@ $>xform package.json
 $>yarn install
 $>yarn build
 $>yarn test
+
+$>yarn build:run default example/example2.json --out=example/example2b.json
 ```

@@ -1,7 +1,7 @@
 {
-  "name": "@guscrawford.com/jzon-xform-cli",
+  "name": "@guscrawford.com/json-xform-cli",
   "version": "0.0.1-alpha",
-  "description": "A cli that transorms JSON",
+  "description": "A cli that transforms JSON",
   "main": "bin/xform-cli.js",
   "repository": "https://github.com/guscrawford-com/cleye.git",
   "author": "Gus Crawford <crawford.gus@gmail.com>",
