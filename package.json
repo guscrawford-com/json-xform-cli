@@ -1,11 +1,21 @@
 {
+  "@xform:remove":{
+    "scripts":"scripts",
+    "devDependencies":"devDependencies"
+  },
+  "@xform:merge":{
+    "bin.xform":"bin/xform-cli.js"
+  },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1-alpha-rev2",
   "description": "A cli that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/cleye.git",
   "author": "Gus Crawford <crawford.gus@gmail.com>",
   "license": "MIT",
+  "bin":{
+    "xform":"dist/bin/xform-cli.js"
+  },
   "devDependencies": {
     "@types/jasmine": "^3.3.13",
     "cpy-cli": "^2.0.0",
@@ -25,6 +35,6 @@
   },
   "dependencies": {
     "@guscrawford.com/cleye": "^0.0.1-alpha",
-    "@guscrawford.com/json-xform": "^0.0.1-alpha"
+    "@guscrawford.com/json-xform": "^0.0.2-alpha"
   }
 }
