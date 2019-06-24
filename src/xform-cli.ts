@@ -14,7 +14,7 @@ command.option(<StaticOption>{
 ).argument({
     name:'template'
 })
-console.info(command);
+//console.info(command);
 readFile(join(process.cwd(),(command.args.template as any).value),{encoding:'utf8'},(err, data)=>{
     if (err) throw err;
     try {

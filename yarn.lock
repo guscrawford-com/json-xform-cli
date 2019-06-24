@@ -6,9 +6,9 @@
   version "0.0.1-alpha"
   resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-0.0.1-alpha.tgz#f0f0e87ed7b810a4289177f66eef3c8a2c428c5b"
 
-"@guscrawford.com/json-xform@^0.0.1-alpha":
-  version "0.0.1-alpha"
-  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-0.0.1-alpha.tgz#e9d84f0a64f01a50b192687fbc42a42ddcfa18dd"
+"@guscrawford.com/json-xform@^0.0.2-alpha":
+  version "0.0.2-alpha"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-0.0.2-alpha.tgz#4ea9c1b5509a1e9614e6a9e072f11b16ed895ad4"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
