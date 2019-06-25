@@ -7,7 +7,7 @@
     "bin.xform":"bin/xform"
   },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "0.0.1-alpha-rev2",
+  "version": "0.0.2-alpha",
   "description": "A cli that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/cleye.git",
