@@ -4,7 +4,7 @@
     "devDependencies":"devDependencies"
   },
   "@xform:merge":{
-    "bin.xform":"bin/xform-cli.js"
+    "bin.xform":"bin/xform"
   },
   "name": "@guscrawford.com/json-xform-cli",
   "version": "0.0.1-alpha-rev2",
@@ -26,11 +26,13 @@
     "typescript": "^3.5.2"
   },
   "scripts": {
-    "package:json-xform-cli": "yarn test:run default package.json --out dist/package.json",
-    "build": "rimraf dist && rimraf docs && typedoc --out docs ./src && cpy README.md dist && cpy CHANGELOG.md dist && tsc && yarn package:json-xform-cli",
+    "binary":"cpy config/bin/xform dist/bin",
+    "package": "yarn build && yarn test:run default package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary",
+    "docs":"rimraf docs && typedoc --out docs ./src",
+    "build": "rimraf dist && tsc",
     "test": "tsc -p tsconfig.jasmine.json && jasmine \"test/**/*[sS]pec.js\"",
     "build:run": "yarn build && yarn test:run",
-    "test:run": "node dist/bin/xform-cli.js",
+    "test:run": "node dist/lib/xform-cli.js",
     "release": "yarn build && cd dist && yarn publish --access=public"
   },
   "dependencies": {
