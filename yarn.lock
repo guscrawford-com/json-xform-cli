@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@guscrawford.com/cleye@^0.0.1-alpha":
-  version "0.0.1-alpha"
-  resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-0.0.1-alpha.tgz#f0f0e87ed7b810a4289177f66eef3c8a2c428c5b"
-
-"@guscrawford.com/json-xform@^0.0.2-alpha":
+"@guscrawford.com/cleye@^0.0.2-alpha":
   version "0.0.2-alpha"
-  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-0.0.2-alpha.tgz#4ea9c1b5509a1e9614e6a9e072f11b16ed895ad4"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-0.0.2-alpha.tgz#35bc2527a2b6e39a1d7d1bcd5f030b03b01044e9"
+
+"@guscrawford.com/json-xform@^0.1.0-beta":
+  version "0.1.0-beta"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-0.1.0-beta.tgz#5fd550a1037855c0a1bd6d716eb5dfd864fa3db9"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
