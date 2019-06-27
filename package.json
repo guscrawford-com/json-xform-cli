@@ -27,7 +27,7 @@
   },
   "scripts": {
     "binary": "cpy config/bin/xform dist/bin",
-    "package": "yarn build && yarn test:run default package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary",
+    "package": "yarn build && yarn test:run package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary",
     "docs": "rimraf docs && typedoc --out docs ./src",
     "build": "rimraf dist && tsc",
     "test": "tsc -p tsconfig.jasmine.json && jasmine \"test/**/*[sS]pec.js\"",
