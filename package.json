@@ -1,20 +1,20 @@
 {
-  "@xform:remove":{
-    "scripts":"scripts",
-    "devDependencies":"devDependencies"
+  "@xform:remove": {
+    "scripts": "scripts",
+    "devDependencies": "devDependencies"
   },
-  "@xform:merge":{
-    "bin.xform":"bin/xform"
+  "@xform:merge": {
+    "bin.xform": "bin/xform"
   },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "0.0.2-alpha",
+  "version": "0.1.0-beta",
   "description": "A cli that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/cleye.git",
   "author": "Gus Crawford <crawford.gus@gmail.com>",
   "license": "MIT",
-  "bin":{
-    "xform":"dist/bin/xform-cli.js"
+  "bin": {
+    "xform": "dist/bin/xform-cli.js"
   },
   "devDependencies": {
     "@types/jasmine": "^3.3.13",
@@ -26,17 +26,17 @@
     "typescript": "^3.5.2"
   },
   "scripts": {
-    "binary":"cpy config/bin/xform dist/bin",
-    "package": "yarn build && yarn test:run default package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary",
-    "docs":"rimraf docs && typedoc --out docs ./src",
+    "binary": "cpy config/bin/xform dist/bin",
+    "package": "yarn build && yarn test:run package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary",
+    "docs": "rimraf docs && typedoc --out docs ./src",
     "build": "rimraf dist && tsc",
     "test": "tsc -p tsconfig.jasmine.json && jasmine \"test/**/*[sS]pec.js\"",
     "build:run": "yarn build && yarn test:run",
     "test:run": "node dist/lib/xform-cli.js",
-    "release": "yarn build && cd dist && yarn publish --access=public"
+    "release": "yarn package && cd dist && yarn publish --access=public"
   },
   "dependencies": {
-    "@guscrawford.com/cleye": "^0.0.1-alpha",
-    "@guscrawford.com/json-xform": "^0.0.2-alpha"
+    "@guscrawford.com/cleye": "^0.0.2-alpha",
+    "@guscrawford.com/json-xform": "^0.1.0-beta"
   }
 }
