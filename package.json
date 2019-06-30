@@ -7,10 +7,10 @@
     "bin.xform": "bin/xform"
   },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "0.1.0-beta",
+  "version": "0.1.1-beta",
   "description": "A cli that transforms JSON",
   "main": "xform-cli.ts",
-  "repository": "https://github.com/guscrawford-com/cleye.git",
+  "repository": "https://github.com/guscrawford-com/json-xform-cli",
   "author": "Gus Crawford <crawford.gus@gmail.com>",
   "license": "MIT",
   "bin": {
@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "@guscrawford.com/cleye": "^0.0.2-alpha",
-    "@guscrawford.com/json-xform": "^0.1.0-beta"
+    "@guscrawford.com/json-xform": "^0.1.1-beta"
   }
 }
