@@ -6,9 +6,9 @@
   version "0.0.2-alpha"
   resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-0.0.2-alpha.tgz#35bc2527a2b6e39a1d7d1bcd5f030b03b01044e9"
 
-"@guscrawford.com/json-xform@^0.1.0-beta":
-  version "0.1.0-beta"
-  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-0.1.0-beta.tgz#5fd550a1037855c0a1bd6d716eb5dfd864fa3db9"
+"@guscrawford.com/json-xform@^0.1.1-beta":
+  version "0.1.1-beta"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-0.1.1-beta.tgz#d9f4fbc1055f16968aec83b3cab330f943ae8cf6"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -693,6 +693,10 @@ is-windows@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
 
+is-wsl@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
+
 isarray@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
@@ -822,6 +826,10 @@ marked@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.4.0.tgz#9ad2c2a7a1791f10a852e0112f77b571dce10c66"
 
+marked@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.6.3.tgz#79babad78af638ba4d522a9e715cdfdd2429e946"
+
 meow@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-5.0.0.tgz#dfc73d63a9afc714a5e371760eb5c88b91078aa4"
@@ -950,6 +958,12 @@ once@^1.3.0:
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
   dependencies:
     wrappy "1"
+
+open@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/open/-/open-6.4.0.tgz#5c13e96d0dc894686164f18965ecfe889ecfc8a9"
+  dependencies:
+    is-wsl "^1.1.0"
 
 optimist@^0.6.1:
   version "0.6.1"
