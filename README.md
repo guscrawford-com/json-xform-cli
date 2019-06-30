@@ -1,4 +1,6 @@
-# 🔀 json-xform-cli 🖥
+# 🔀 json-xform-cli 💻
+
+## 📃 [Docs](./docs/html/index.html) | ❓ [Docs](./HELP.md)
 
 **@guscrawford.com/json-xform-cli** *JSON Transform*
 
