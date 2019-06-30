@@ -1,0 +1,7 @@
+yarn run v1.3.2
+$ node dist/lib/xform-cli.js --out=example/file-input-result.json --var=answer:123
+{
+  "123": "123?",
+  "tes": "test"
+}
+Done in 0.44s.

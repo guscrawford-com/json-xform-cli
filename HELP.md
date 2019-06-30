@@ -1,29 +1,55 @@
-# 🔀 json-xform-cli 🖥
 
-**@guscrawford.com/json-xform-cli** *JSON Transform*
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>@guscrawford.com/json-xform-cli</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body style="margin:24pt;">
 
-Manipulate JSON files statically **on the command-line**
+# xform
 
-*See [json-xform](https://github.com/guscrawford-com/json-xform) node library*
+## NAME
 
-----
+*default* - Transform **JSON** data from `stdin`, or as specified by `[(template-file)]`
 
-## Off the Cuff Example
+## SYNOPSIS
+
+*xform [(template-file)] [--vars=(name:value[,...])][--out=(output-file)]*
+
+## DESCRIPTION
+
+Transform **JSON** data as specified by [json-xform](https://github.com/guscrawford-com/json-xform/blob/1.0.0-beta/README.md):
+
+*JSON data* is the contents of  `(template-file)` if provided or the contents of `stdin` if `(template-file)` otherwise.
+
+If `--out=(output-file)` was not provided; writes the output to `stdout`, otherwise overwrites/creates without prompt the file specified with transformed contents.
+
+
+## OPTIONS
+
+### `-V=(name:value[,...])`
+### `--vars=(name:value[,...])`
+
+Override or create the root `@xform:var` graph, in memory, on the parsed result of `[(template-file)]` or `stdin`.
 
 ```
-# Binary linked in %PATH%
-$>yarn global add @guscrawford/json-xform-cli
-```
-
-*or*
+echo {"test":"${example}"} | xform --vars=example:"Mic Check"
 
 ```
-# Binary referenceable by yarn or npm
-$>yarn add @guscrawford/json-xform-cli -D
-```
+
+### `-o=(output-file)`
+### `--out=(output-file)`
+
+Override or create the root `@xform:var` graph, in memory, on the parsed result of `[(template-file)]` or `stdin`.
+
+## Examples
 
 ```
-$>xform package.json --out dist/package.json
+$> xform package.json --out dist/package.json
 ```
 
 *where **package.json** is formed as so:*
@@ -42,7 +68,7 @@ $>xform package.json --out dist/package.json
   "description": "A cli that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/json-xform-cli",
-  "author": "Gus Crawford <crawford.gus@gmail.com>",
+  "author": "Gus Crawford {crawford.gus@gmail.com}",
   "license": "MIT",
   "bin": {
     "xform": "dist/bin/xform-cli.js"
@@ -83,7 +109,7 @@ $>xform package.json --out dist/package.json
   "description": "A cli that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/cleye.git",
-  "author": "Gus Crawford <crawford.gus@gmail.com>",
+  "author": "Gus Crawford {crawford.gus@gmail.com}",
   "license": "MIT",
   "bin": {
     "xform": "bin/xform"
@@ -96,12 +122,11 @@ $>xform package.json --out dist/package.json
 
 ```
 
-## Develop & Contribute
+## Notes
 
-```
-$>yarn install
-$>yarn build
-$>yarn test
+## SEE ALSO
 
-$>yarn build:run default example/example2.json --out=example/example2b.json
-```
+[json-xform](https://www.npmjs.com/package/@guscrawford.com/json-xform/v/1.0.0-beta)
+
+</body>
+</html>

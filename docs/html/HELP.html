@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>@guscrawford.com/json-xform-cli</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body style="margin:24pt;">
+
+<h1 id="xform">xform</h1>
+<h2 id="name">NAME</h2>
+<p><em>default</em> - Transform <strong>JSON</strong> data from <code>stdin</code>, or as specified by <code>[&amp;lttemplate-file&amp;gt]</code></p>
+<h2 id="synopsis">SYNOPSIS</h2>
+<p><em>xform [&amp;lttemplate-file&amp;gt] [--vars=&amp;ltname:value[,...]&amp;gt][--out=&amp;ltoutput-file&amp;gt]</em></p>
+<h2 id="description">DESCRIPTION</h2>
+<p>Transform <strong>JSON</strong> data as specified by <a href="https://github.com/guscrawford-com/json-xform/blob/1.0.0-beta/README.md">json-xform</a>:</p>
+<p><em>JSON data</em> is the contents of  <code>&amp;lttemplate-file&amp;gt</code> if provided or the contents of <code>stdin</code> if <code>&amp;lttemplate-file&amp;gt</code> otherwise.</p>
+<p>If <code>--out=&amp;ltoutput-file&amp;gt</code> was not provided; writes the output to <code>stdout</code>, otherwise overwrites/creates without prompt the file specified with transformed contents.</p>
+<h2 id="options">OPTIONS</h2>
+<h3 id="-vltnamevaluegt">-V=&amp;ltname:value[,...]&amp;gt</h3>
+<h3 id="--varsltnamevaluegt">--vars=&amp;ltname:value[,...]&amp;gt</h3>
+<p>Override or create the root <code>@xform:var</code> graph, in memory, on the parsed result of [&amp;lttemplate-file&amp;gt] or <code>stdin</code>.</p>
+<pre><code>echo {&quot;test&quot;:&quot;${example}&quot;} | xform --vars=example:&quot;Mic Check&quot;
+</code></pre><h3 id="-oltoutput-filegt">-o=&amp;ltoutput-file&amp;gt</h3>
+<h3 id="--outltoutput-filegt">--out=&amp;ltoutput-file&amp;gt</h3>
+<p>Override or create the root <code>@xform:var</code> graph, in memory, on the parsed result of [&amp;lttemplate-file&amp;gt] or <code>stdin</code>.</p>
+<h2 id="examples">Examples</h2>
+<pre><code>$&amp;gtxform package.json --out dist/package.json</code></pre><p><em>where <strong>package.json</strong> is formed as so:</em></p>
+<pre><code>{
+  &quot;@xform:remove&quot;: {
+    &quot;scripts&quot;: &quot;scripts&quot;,
+    &quot;devDependencies&quot;: &quot;devDependencies&quot;
+  },
+  &quot;@xform:merge&quot;: {
+    &quot;bin.xform&quot;: &quot;bin/xform&quot;
+  },
+  &quot;name&quot;: &quot;@guscrawford.com/json-xform-cli&quot;,
+  &quot;version&quot;: &quot;0.1.0-beta&quot;,
+  &quot;description&quot;: &quot;A cli that transforms JSON&quot;,
+  &quot;main&quot;: &quot;xform-cli.ts&quot;,
+  &quot;repository&quot;: &quot;https://github.com/guscrawford-com/json-xform-cli&quot;,
+  &quot;author&quot;: &quot;Gus Crawford &amp;ltcrawford.gus@gmail.com&amp;gt&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;bin&quot;: {
+    &quot;xform&quot;: &quot;dist/bin/xform-cli.js&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@types/jasmine&quot;: &quot;^3.3.13&quot;,
+    &quot;cpy-cli&quot;: &quot;^2.0.0&quot;,
+    &quot;jasmine&quot;: &quot;^3.4.0&quot;,
+    &quot;renamer&quot;: &quot;^1.1.2&quot;,
+    &quot;rimraf&quot;: &quot;^2.6.3&quot;,
+    &quot;typedoc&quot;: &quot;^0.14.2&quot;,
+    &quot;typescript&quot;: &quot;^3.5.2&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;binary&quot;: &quot;cpy config/bin/xform dist/bin&quot;,
+    &quot;package&quot;: &quot;yarn build &amp;&amp; yarn test:run package.json --out dist/package.json &amp;&amp; cpy README.md dist &amp;&amp; cpy CHANGELOG.md dist &amp;&amp; yarn binary&quot;,
+    &quot;docs&quot;: &quot;rimraf docs &amp;&amp; typedoc --out docs ./src&quot;,
+    &quot;build&quot;: &quot;rimraf dist &amp;&amp; tsc&quot;,
+    &quot;test&quot;: &quot;tsc -p tsconfig.jasmine.json &amp;&amp; jasmine \&quot;test/**/*[sS]pec.js\&quot;&quot;,
+    &quot;build:run&quot;: &quot;yarn build &amp;&amp; yarn test:run&quot;,
+    &quot;test:run&quot;: &quot;node dist/lib/xform-cli.js&quot;,
+    &quot;release&quot;: &quot;yarn package &amp;&amp; cd dist &amp;&amp; yarn publish --access=public&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@guscrawford.com/cleye&quot;: &quot;^0.0.2-alpha&quot;,
+    &quot;@guscrawford.com/json-xform&quot;: &quot;^0.1.0-beta&quot;
+  }
+}
+</code></pre><p><em>output:</em></p>
+<pre><code>{
+  &quot;name&quot;: &quot;@guscrawford.com/json-xform-cli&quot;,
+  &quot;version&quot;: &quot;0.1.0-beta&quot;,
+  &quot;description&quot;: &quot;A cli that transforms JSON&quot;,
+  &quot;main&quot;: &quot;xform-cli.ts&quot;,
+  &quot;repository&quot;: &quot;https://github.com/guscrawford-com/cleye.git&quot;,
+  &quot;author&quot;: &quot;Gus Crawford &amp;ltcrawford.gus@gmail.com&amp;gt&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;bin&quot;: {
+    &quot;xform&quot;: &quot;bin/xform&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;@guscrawford.com/cleye&quot;: &quot;^0.0.2-alpha&quot;,
+    &quot;@guscrawford.com/json-xform&quot;: &quot;^0.1.0-beta&quot;
+  }
+}
+</code></pre><h2 id="notes">Notes</h2>
+<h2 id="see-also">SEE ALSO</h2>
+<p><a href="https://www.npmjs.com/package/@guscrawford.com/json-xform/v/1.0.0-beta">json-xform</a></p>
+</body>
+</html>
