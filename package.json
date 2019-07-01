@@ -7,7 +7,7 @@
     "bin.xform": "bin/xform"
   },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "0.1.1-beta",
+  "version": "0.2.0-beta",
   "description": "A cli that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/json-xform-cli",
@@ -37,8 +37,8 @@
     "release": "yarn package && cd dist && yarn publish --access=public"
   },
   "dependencies": {
-    "@guscrawford.com/cleye": "^0.0.2-alpha",
-    "@guscrawford.com/json-xform": "^0.1.1-beta",
+    "@guscrawford.com/cleye": "^0.0.3-beta",
+    "@guscrawford.com/json-xform": "^1.0.0-beta",
     "open": "^6.4.0"
   }
 }
