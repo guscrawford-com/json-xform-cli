@@ -34,7 +34,20 @@ Released initial draft of *json-xform*
 
 ## 0.1.0-beta
 ### Jun 26
-#### Initial release
+#### Update Cleye
 
 - Brings in fixes and improvements from dependant libraries
 - Can be run without 'default' prefix
+
+----
+
+***missing notes***
+
+----
+
+## 0.2.0-beta
+### Jun 26
+#### Update Dependencies; Accept `--var` command-line option
+
+- Brings in fixes and improvements from dependant libraries
+- `{"valueIs":"${name} | xform --var=name:value` -> `{valueIs:'value'}`
