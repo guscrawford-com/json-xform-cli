@@ -7,7 +7,7 @@
     "bin.xform": "bin/xform"
   },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "0.2.0-beta",
+  "version": "1.1.0-beta",
   "description": "A cli that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/json-xform-cli",
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "binary": "cpy config/bin/xform dist/bin",
-    "package": "yarn build && yarn test:run package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary && cpy docs dist --parents",
+    "package": "yarn docs && yarn build && yarn test:run package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary && cpy docs dist --parents",
     "docs": "rimraf docs && typedoc --out docs/html ./src && marked HELP.md > docs/html/HELP.html",
     "build": "rimraf dist && tsc",
     "test": "tsc -p tsconfig.jasmine.json && jasmine \"test/**/*[sS]pec.js\"",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@guscrawford.com/cleye": "^0.0.3-beta",
-    "@guscrawford.com/json-xform": "^1.0.0-beta",
+    "@guscrawford.com/json-xform": "^1.0.1-beta",
     "open": "^6.4.0"
   }
 }

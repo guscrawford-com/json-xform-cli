@@ -14,37 +14,37 @@
 
 ## NAME
 
-*default* - Transform **JSON** data from `stdin`, or as specified by `[(template-file)]`
+*default* - Transform **JSON** data from `stdin`, or as specified by ```[<template-file>]```
 
 ## SYNOPSIS
 
-*xform [(template-file)] [--vars=(name:value[,...])][--out=(output-file)]*
+*```xform [<template-file>] [--vars=<name:value[,...]>][--out=<output-file>]```*
 
 ## DESCRIPTION
 
 Transform **JSON** data as specified by [json-xform](https://github.com/guscrawford-com/json-xform/blob/1.0.0-beta/README.md):
 
-*JSON data* is the contents of  `(template-file)` if provided or the contents of `stdin` if `(template-file)` otherwise.
+*JSON data* is the contents of  ```<template-file>``` if provided or the contents of `stdin` if ```<template-file>``` otherwise.
 
-If `--out=(output-file)` was not provided; writes the output to `stdout`, otherwise overwrites/creates without prompt the file specified with transformed contents.
+If ```--out=<output-file>``` was not provided; writes the output to `stdout`, otherwise overwrites/creates without prompt the file specified with transformed contents.
 
 
 ## OPTIONS
 
-### `-V=(name:value[,...])`
-### `--vars=(name:value[,...])`
+### ```-V=<name:value[,...]>```
+### ```--vars=<name:value[,...]>```
 
-Override or create the root `@xform:var` graph, in memory, on the parsed result of `[(template-file)]` or `stdin`.
+Override or create the root `@xform:var` graph, in memory, on the parsed result of ```[<template-file>]``` or `stdin`.
 
 ```
 echo {"test":"${example}"} | xform --vars=example:"Mic Check"
 
 ```
 
-### `-o=(output-file)`
-### `--out=(output-file)`
+### ```-o=<output-file>```
+### ```--out=<output-file>```
 
-Override or create the root `@xform:var` graph, in memory, on the parsed result of `[(template-file)]` or `stdin`.
+Override or create the root `@xform:var` graph, in memory, on the parsed result of ```[<template-file>]``` or `stdin`.
 
 ## Examples
 
