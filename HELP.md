@@ -32,7 +32,7 @@ If ```--out=<output-file>``` was not provided; writes the output to `stdout`, ot
 ## OPTIONS
 
 ### ```-V=<name:value[,...]>```
-### ```--vars=<name:value[,...]>```
+### ```--var=<name:value[,...]>```
 
 Override or create the root `@xform:var` graph, in memory, on the parsed result of ```[<template-file>]``` or `stdin`.
 

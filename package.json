@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@guscrawford.com/cleye": "^0.0.3-beta",
-    "@guscrawford.com/json-xform": "^1.0.1-beta",
+    "@guscrawford.com/json-xform": "^1.2.0",
     "open": "^6.4.0"
   }
 }

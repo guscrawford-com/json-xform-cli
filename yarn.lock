@@ -6,9 +6,10 @@
   version "0.0.3-beta"
   resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-0.0.3-beta.tgz#d742d360167679eae01eb4ca0b5ccb4ccfbe911d"
 
-"@guscrawford.com/json-xform@^1.0.1-beta":
-  version "1.0.1-beta"
-  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-1.0.1-beta.tgz#0fd1af944c51d08f4318ada356dcb31b199f0aea"
+"@guscrawford.com/json-xform@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-1.2.0.tgz#771367b388dec47d7837e5de251f07ee129dcbdc"
+  integrity sha512-CEJbhzkIXpLJuHPVPA27f5KWwObllzMTDhKe1iaR2EbqiYwffTjCV+9qlXUxaSuA4PwpMnqLvE8h+DqYmeU0yw==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
