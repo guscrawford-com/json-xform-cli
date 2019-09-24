@@ -18,7 +18,7 @@
 
 ## SYNOPSIS
 
-*```xform [<template-file>] [--vars=<name:value[,...]>][--out=<output-file>]```*
+*```xform [<template-file>] [--extends=<json-file>] [--var=<name:value[,...]>] [--out=<output-file>]```*
 
 ## DESCRIPTION
 
@@ -30,6 +30,14 @@ If ```--out=<output-file>``` was not provided; writes the output to `stdout`, ot
 
 
 ## OPTIONS
+
+### ```-E=<json-file>```
+### ```--extends=<json-file>```
+
+Override or create the root `@xform:extends` property, in memory, on the parsed result of ```[<template-file>]``` or `stdin`, extending that result with the templated contents referenced with extends
+
+```
+echo {"test":"${example}"} | xform --vars=example:"Mic Check"
 
 ### ```-V=<name:value[,...]>```
 ### ```--var=<name:value[,...]>```
@@ -44,7 +52,7 @@ echo {"test":"${example}"} | xform --vars=example:"Mic Check"
 ### ```-o=<output-file>```
 ### ```--out=<output-file>```
 
-Override or create the root `@xform:var` graph, in memory, on the parsed result of ```[<template-file>]``` or `stdin`.
+Specify the filename to write transformed output to; `<stdout>` otherwise
 
 ## Examples
 
