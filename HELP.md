@@ -38,6 +38,7 @@ Override or create the root `@xform:extends` property, in memory, on the parsed 
 
 ```
 echo {"test":"${example}"} | xform --vars=example:"Mic Check"
+```
 
 ### ```-V=<name:value[,...]>```
 ### ```--var=<name:value[,...]>```
@@ -46,7 +47,6 @@ Override or create the root `@xform:var` graph, in memory, on the parsed result 
 
 ```
 echo {"test":"${example}"} | xform --vars=example:"Mic Check"
-
 ```
 
 ### ```-o=<output-file>```

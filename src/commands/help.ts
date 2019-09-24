@@ -11,6 +11,7 @@ export class HelpCommand implements Command {
 const RegisteredHelpCommand = CliAppInstance.command(new HelpCommand());
 if (RegisteredHelpCommand.index !== -1) {
     // console.info(CliAppInstance.binRuntime)
+    (CliAppInstance as any).cancelDefault = true;
     let helpPath = CliAppInstance.binRuntime.split(/\/|\\/);
         open(join(`${helpPath.slice(0, helpPath.length-2).join('/')}/docs/html/HELP.html`));
 }
