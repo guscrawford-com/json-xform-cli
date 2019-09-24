@@ -45,9 +45,15 @@ Released initial draft of *json-xform*
 
 ----
 
-## 0.2.0-beta
-### Jun 26
-#### Update Dependencies; Accept `--var` command-line option
+## 1.2.0
+### Sep 9
+#### Update Dependencies; Accept `--extends` command-line option
 
 - Brings in fixes and improvements from dependant libraries
-- `{"valueIs":"${name} | xform --var=name:value` -> `{valueIs:'value'}`
+
+## 1.3.0
+### Sep 9
+#### Update Dependencies; Accept `--extends` command-line option
+
+- Brings in fixes and improvements from dependant libraries
+- Exposes `@xform:extends` directive on cli option to pass in a json to extend
