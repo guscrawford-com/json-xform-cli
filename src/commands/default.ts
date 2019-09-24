@@ -30,12 +30,12 @@ export class DefaultCommand implements Command {
     constructor(protected app:CliApp) {  }
 }
 export const RegisteredDefaultCommand = new DefaultCommand(CliAppInstance).registeredCommand;
-
-if ((RegisteredDefaultCommand.args.template as any).value)
-    readFile(join(process.cwd(),(RegisteredDefaultCommand.args.template as any).value),{encoding:'utf8'},transform(RegisteredDefaultCommand));
-else if (!(RegisteredDefaultCommand.args.template as any).value)
-    read(process.stdin, transform(RegisteredDefaultCommand));
-
+if ((CliAppInstance as any).cancelDefault !== true) {
+    if ((RegisteredDefaultCommand.args.template as any).value)
+        readFile(join(process.cwd(),(RegisteredDefaultCommand.args.template as any).value),{encoding:'utf8'},transform(RegisteredDefaultCommand));
+    else if (!(RegisteredDefaultCommand.args.template as any).value)
+        read(process.stdin, transform(RegisteredDefaultCommand));
+}
 const templateWithVars = (data:string) => parseVars(
     JSON.parse(data),
     (RegisteredDefaultCommand.options.var as any).value
