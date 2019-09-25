@@ -17,7 +17,7 @@ Released initial draft of *json-xform*
 ----
 
 ## 0.0.1-alpha-rev2
-### Mon Jun 23 2019 20:28:31 GMT-0400 (Eastern Daylight Time)
+### Jun 23 2019
 #### Initial release
 
 *Non code-impacting*
@@ -25,7 +25,29 @@ Released initial draft of *json-xform*
 ----
 
 ## 0.0.2-alpha
-### Mon Jun 24 2019 10:28:31 GMT-0400 (Eastern Daylight Time)
+### Jun 24 2019
 #### Initial release
 
 - Fixes issue using npm/yarn linked binary
+
+----
+
+## 0.1.0-beta
+### Jun 26
+#### Update Cleye
+
+- Brings in fixes and improvements from dependant libraries
+- Can be run without 'default' prefix
+
+----
+
+***missing notes***
+
+----
+
+## 0.2.0-beta
+### Jun 26
+#### Update Dependencies; Accept `--var` command-line option
+
+- Brings in fixes and improvements from dependant libraries
+- `{"valueIs":"${name} | xform --var=name:value` -> `{valueIs:'value'}`
