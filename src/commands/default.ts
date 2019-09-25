@@ -30,9 +30,16 @@ export class DefaultCommand implements Command {
     constructor(protected app:CliApp) {  }
 }
 export const RegisteredDefaultCommand = new DefaultCommand(CliAppInstance).registeredCommand;
+let fileArg:string, relPath:string[], workingDirectory:string;
 if ((CliAppInstance as any).cancelDefault !== true) {
+    fileArg = join(process.cwd(),(RegisteredDefaultCommand.args.template as any).value);
+    relPath = fileArg.split(/\/|\\/);
+    relPath.pop();
+    if (!fileArg.match(/^\/|([a-zA-Z]\:)?\\/)) 
+        workingDirectory = join(process.cwd(),relPath.join('/'));
+    else workingDirectory = relPath.join('/');
     if ((RegisteredDefaultCommand.args.template as any).value)
-        readFile(join(process.cwd(),(RegisteredDefaultCommand.args.template as any).value),{encoding:'utf8'},transform(RegisteredDefaultCommand));
+        readFile(fileArg,{encoding:'utf8'},transform(RegisteredDefaultCommand));
     else if (!(RegisteredDefaultCommand.args.template as any).value)
         read(process.stdin, transform(RegisteredDefaultCommand));
 }
@@ -63,7 +70,7 @@ export function parse(command:RegisteredCommand) {
            ? Object.assign(templateWithVars(data), {"@xform:extends":(command.options.extends as any).value})
            : templateWithVars(data);
         // console.error(template);
-        var templater = new Templater(template);
+        var templater = new Templater(template,undefined,workingDirectory);
         var parsedTemplate = templater.parse();
         // console.error(templater);
         return JSON.stringify(

@@ -1,4 +1,4 @@
 {
-    "@xform:extends":"./example/sample.json",
+    "@xform:extends":"./sample.json",
     "weird":true
 }
