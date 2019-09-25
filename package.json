@@ -33,7 +33,7 @@
     "test": "tsc -p tsconfig.jasmine.json && jasmine \"test/**/*[sS]pec.js\"",
     "build:run": "yarn build && yarn test:run",
     "test:run": "node dist/lib/xform-cli.js",
-    "release": "yarn build && cd dist && yarn publish --access=public"
+    "release": "yarn package && cd dist && yarn publish --access=public --registry https://registry.npmjs.org"
   },
   "dependencies": {
     "@guscrawford.com/cleye": "^0.0.1-alpha",
