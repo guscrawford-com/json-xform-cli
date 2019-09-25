@@ -1,6 +1,6 @@
 # 🔀 json-xform-cli 💻
 
-## 📃 [Docs](./docs/html/index.html) | ❓ [Command Help](./HELP.md)
+## 📃 [Docs](./docs/html/index.html) | ❓ [Command Hel:user-test](./HELP.md)
 
 **@guscrawford.com/json-xform-cli** *JSON Transform*
 
@@ -92,7 +92,7 @@ $>xform package.json --out dist/package.json
   },
   "dependencies": {
     "@guscrawford.com/cleye": "^0.0.2-alpha",
-    "@guscrawford.com/json-xform": "^0.1.0-beta"
+    "@guscrawford.com/json-xform": "1.5.1"
   }
 }
 
@@ -105,5 +105,5 @@ $>yarn install
 $>yarn build
 $>yarn test
 
-$>yarn build:run default example/example2.json --out=example/example2b.json
+$>yarn build:user-test default example/example2.json --out=example/example2b.json
 ```
