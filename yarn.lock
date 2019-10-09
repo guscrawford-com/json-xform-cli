@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@guscrawford.com/cleye@../cleye/dist/guscrawford.com-cleye-v1.0.0.tgz":
+  version "1.0.0"
+  resolved "../cleye/dist/guscrawford.com-cleye-v1.0.0.tgz#5391dc9fff7858f56dc98a03bcb8fe28c14bbc16"
+
 "@guscrawford.com/cleye@^0.0.3-beta":
   version "0.0.3-beta"
   resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-0.0.3-beta.tgz#d742d360167679eae01eb4ca0b5ccb4ccfbe911d"

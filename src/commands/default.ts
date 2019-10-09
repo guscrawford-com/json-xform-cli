@@ -3,7 +3,6 @@ import { Templater } from "@guscrawford.com/json-xform";
 import { read, parseVars } from '../util';
 import { RegisteredCommand, CliApp, StaticOption, Command, StaticArgument, StaticCommand, Option } from "@guscrawford.com/cleye";
 import { join } from "path";
-import { CliAppInstance } from "../xform-cli";
 import { default as fromJson } from 'jsontoxml';
 const jsonYml = require('json2yaml');
 export class DefaultCommand implements StaticCommand {
@@ -56,8 +55,8 @@ function transform(command:RegisteredCommand) { return (err:any, data:string) =>
     if (err) throw err;
     try {
         let parsedData = parse(command)(data);
-        let yaml = typeof (command.options.yml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.yml'));
-        let xml = typeof (command.options.xml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.xml'));
+        let yaml = command.options.yml && typeof (command.options.yml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.yml'));
+        let xml = command.options.xml && typeof (command.options.xml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.xml'));
         if (xml) parsedData = fromJson(parsedData, {removeIllegalNameCharacters:true});
         else if (yaml) parsedData = jsonYml.stringify(parsedData);
         else parsedData = asString(parsedData);

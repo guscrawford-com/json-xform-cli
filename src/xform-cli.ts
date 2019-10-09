@@ -4,8 +4,8 @@ import { DefaultCommand, HelpCommand, VersionCommand } from './commands';
 
 export const CliAppInstance = new CliApp({
     commands:{
-        default:DefaultCommand,
-        help: HelpCommand,
-        version: VersionCommand
+        default:new DefaultCommand(),
+        help: new HelpCommand(),
+        version: new VersionCommand()
     }
 });

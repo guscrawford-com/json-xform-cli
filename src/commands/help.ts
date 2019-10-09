@@ -1,5 +1,4 @@
 import { Command, CliApp } from "@guscrawford.com/cleye";
-import { CliAppInstance } from "../xform-cli";
 import { join } from 'path';
 const open = require('open');
 export class HelpCommand implements Command {
