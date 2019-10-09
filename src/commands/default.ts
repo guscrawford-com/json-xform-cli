@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'fs';
 import { Templater } from "@guscrawford.com/json-xform";
-import { read, parseVars } from '../util';
+import { read, parseVars, stripComments } from '../util';
 import { RegisteredCommand, CliApp, StaticOption, Command, StaticArgument, StaticCommand, Option } from "@guscrawford.com/cleye";
 import { join } from "path";
 import { default as fromJson } from 'jsontoxml';
@@ -31,6 +31,10 @@ export class DefaultCommand implements StaticCommand {
         'yml':<StaticOption>{
             spinalCaseName:'ynl',
             flag:'Y'
+        },
+        'comments':<StaticOption>{
+            spinalCaseName:'comments',
+            flag:'C'
         }
     };
     args: {[key:string]:StaticArgument} = {
@@ -43,7 +47,11 @@ export class DefaultCommand implements StaticCommand {
 function main_default(app:CliApp) {
     console.info(app);
     if (((app.commands.default as Command).args.template as any).value)
-        readFile(join(process.cwd(),((app.commands.default as Command).args.template as any).value),{encoding:'utf8'},transform(app.commands.default as RegisteredCommand));
+        readFile(
+            join(process.cwd(),((app.commands.default as Command).args.template as any).value),
+            {encoding:'utf8'},
+            transform(app.commands.default as RegisteredCommand)
+        );
     else if (!((app.commands.default as Command).args.template as any).value)
         read(process.stdin, transform(app.commands.default as RegisteredCommand));
 }
@@ -53,10 +61,13 @@ const templateWithVars = (data:string, varOption:Option) => parseVars(
 );
 function transform(command:RegisteredCommand) { return (err:any, data:string) => {
     if (err) throw err;
+    let allowComments = !command.options.comments || command.options.comments && (command.options.comments as any).value !== 'false';
+    if (allowComments) data = stripComments(data);
     try {
         let parsedData = parse(command)(data);
         let yaml = command.options.yml && typeof (command.options.yml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.yml'));
         let xml = command.options.xml && typeof (command.options.xml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.xml'));
+        
         if (xml) parsedData = fromJson(parsedData, {removeIllegalNameCharacters:true});
         else if (yaml) parsedData = jsonYml.stringify(parsedData);
         else parsedData = asString(parsedData);

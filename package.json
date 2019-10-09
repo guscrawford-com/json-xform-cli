@@ -7,8 +7,8 @@
     "bin.xform": "bin/xform"
   },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "1.4.0",
-  "description": "A cli that transforms JSON",
+  "version": "1.5.1",
+  "description": "A CLI that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/json-xform-cli",
   "author": "Gus Crawford <crawford.gus@gmail.com>",
@@ -38,7 +38,7 @@
     "build:user-test": "yarn build && yarn user-test",
     "user-test": "node dist/lib/xform-cli.js",
     "package": "yarn build && yarn docs && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary && cpy docs dist --parents",
-    "release": "yarn package && cd dist && yarn publish --access=public"
+    "release": "cd dist && yarn publish --access=public"
   },
   "dependencies": {
     "@guscrawford.com/cleye": "../cleye/dist/guscrawford.com-cleye-v1.0.0.tgz",
