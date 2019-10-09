@@ -17,7 +17,9 @@
     "xform": "dist/bin/xform-cli.js"
   },
   "devDependencies": {
+    "@guscrawford.com/json-xform-cli": "^1.5.0",
     "@types/jasmine": "^3.3.13",
+    "@types/jsontoxml": "^1.0.1",
     "cpy-cli": "^2.0.0",
     "jasmine": "^3.4.0",
     "marked": "^0.6.3",
@@ -28,9 +30,9 @@
   },
   "scripts": {
     "binary": "cpy config/bin/xform dist/bin",
-    "package": "yarn build && yarn docs && yarn user-test package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary && cpy docs dist --parents",
+    "package": "yarn build && yarn docs &&  && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary && cpy docs dist --parents",
     "docs": "rimraf docs && typedoc --out docs/html ./src && marked HELP.md > docs/html/HELP.html",
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && mkdir dist && xform package.json --out dist/package.json && tsc",
     "test": "yarn build:test && yarn run:test",
     "build:test": "jasmine \"test/**/*[sS]pec.js\"",
     "run:test": "jasmine \"test/**/*[sS]pec.js\"",
@@ -41,6 +43,8 @@
   "dependencies": {
     "@guscrawford.com/cleye": "^0.0.3-beta",
     "@guscrawford.com/json-xform": "1.5.0",
+    "json2yaml": "^1.1.0",
+    "jsontoxml": "^1.0.1",
     "open": "^6.4.0"
   }
 }

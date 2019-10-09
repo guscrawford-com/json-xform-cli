@@ -1,10 +1,12 @@
 import { readFile, writeFile } from 'fs';
 import { Templater } from "@guscrawford.com/json-xform";
 import { read, parseVars } from '../util';
-import { RegisteredCommand, CliApp, StaticOption, Command, StaticArgument } from "@guscrawford.com/cleye";
+import { RegisteredCommand, CliApp, StaticOption, Command, StaticArgument, StaticCommand, Option } from "@guscrawford.com/cleye";
 import { join } from "path";
 import { CliAppInstance } from "../xform-cli";
-export class DefaultCommand implements Command {
+import { default as fromJson } from 'jsontoxml';
+const jsonYml = require('json2yaml');
+export class DefaultCommand implements StaticCommand {
     name = "default";
     options: {[key:string]:StaticOption} = {
         'out':<StaticOption>{
@@ -18,6 +20,18 @@ export class DefaultCommand implements Command {
         'extends':<StaticOption>{
             spinalCaseName:'extends',
             flag:'E'
+        },
+        'remove':<StaticOption>{
+            spinalCaseName:'remove',
+            flag:'R'
+        },
+        'xml':<StaticOption>{
+            spinalCaseName:'xml',
+            flag:'X'
+        },
+        'yml':<StaticOption>{
+            spinalCaseName:'ynl',
+            flag:'Y'
         }
     };
     args: {[key:string]:StaticArgument} = {
@@ -25,27 +39,30 @@ export class DefaultCommand implements Command {
             name:'template'
         }
     };
-    index:number = -1;
-    registeredCommand:RegisteredCommand =  this.app.command(this);
-    constructor(protected app:CliApp) {  }
+    run = main_default;
 }
-export const RegisteredDefaultCommand = new DefaultCommand(CliAppInstance).registeredCommand;
-if ((CliAppInstance as any).cancelDefault !== true) {
-    if ((RegisteredDefaultCommand.args.template as any).value)
-        readFile(join(process.cwd(),(RegisteredDefaultCommand.args.template as any).value),{encoding:'utf8'},transform(RegisteredDefaultCommand));
-    else if (!(RegisteredDefaultCommand.args.template as any).value)
-        read(process.stdin, transform(RegisteredDefaultCommand));
+function main_default(app:CliApp) {
+    console.info(app);
+    if (((app.commands.default as Command).args.template as any).value)
+        readFile(join(process.cwd(),((app.commands.default as Command).args.template as any).value),{encoding:'utf8'},transform(app.commands.default as RegisteredCommand));
+    else if (!((app.commands.default as Command).args.template as any).value)
+        read(process.stdin, transform(app.commands.default as RegisteredCommand));
 }
-const templateWithVars = (data:string) => parseVars(
+const templateWithVars = (data:string, varOption:Option) => parseVars(
     JSON.parse(data),
-    (RegisteredDefaultCommand.options.var as any).value
+    varOption.value as string
 );
-export function transform(command:RegisteredCommand) { return (err:any, data:string) => {
+function transform(command:RegisteredCommand) { return (err:any, data:string) => {
     if (err) throw err;
     try {
         let parsedData = parse(command)(data);
+        let yaml = typeof (command.options.yml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.yml'));
+        let xml = typeof (command.options.xml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.xml'));
+        if (xml) parsedData = fromJson(parsedData, {removeIllegalNameCharacters:true});
+        else if (yaml) parsedData = jsonYml.stringify(parsedData);
+        else parsedData = asString(parsedData);
         if (!(command.options.out as any).value)
-            process.stdout.write(Buffer.from(parsedData+"\n\r"));
+            process.stdout.write(Buffer.from(parsedData)+"\n");
         else
             writeFile(
                 join(process.cwd(),(command.options.out as any).value||(command.args.template as any).value), 
@@ -56,20 +73,23 @@ export function transform(command:RegisteredCommand) { return (err:any, data:str
         throw e;
     }
 }; }
-export function parse(command:RegisteredCommand) {
+function parse(command:RegisteredCommand) {
     return (data:string)=> {
         // console.error(new Templater({"@xform:extends":'example/sample.json'}).parse())
         var template = (command.options.extends as any).value
-           ? Object.assign(templateWithVars(data), {"@xform:extends":(command.options.extends as any).value})
-           : templateWithVars(data);
+           ? Object.assign(templateWithVars(data, command.options.var as Option), {"@xform:extends":(command.options.extends as any).value})
+           : templateWithVars(data, command.options.var as Option);
         // console.error(template);
         var templater = new Templater(template);
         var parsedTemplate = templater.parse();
         // console.error(templater);
-        return JSON.stringify(
-            parsedTemplate,
-            null,
-            "  "
-        );
+        return parsedTemplate;
     }
+}
+function asString(parsedTemplate:any) {
+    return JSON.stringify(
+        parsedTemplate,
+        null,
+        "  "
+    );
 }
