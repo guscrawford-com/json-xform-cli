@@ -2,15 +2,34 @@
 # yarn lockfile v1
 
 
+"@guscrawford.com/cleye@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-1.0.0.tgz#4859d0a475cbc4d789d603655717b5f4b91bf240"
+  integrity sha512-62ro+jEtE1Aj+Rce76rO3iA1Nck+TXyaxnbxlYaf/4nUZ5blGbIve26L0nKfPGo01FpBcFL5kJzctP9z278kxA==
+
 "@guscrawford.com/cleye@^0.0.3-beta":
   version "0.0.3-beta"
   resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-0.0.3-beta.tgz#d742d360167679eae01eb4ca0b5ccb4ccfbe911d"
   integrity sha512-SkKIIy6etfaiLZbMQ3iSU+ZMOELrl3IA5v279O+klfWcpEQXIVPPvLVdiKwnEpo6LHefS7GuZRM8qvUPHeD87Q==
 
+"@guscrawford.com/json-xform-cli@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform-cli/-/json-xform-cli-1.5.0.tgz#b9ba0fd259162e869fa279beba601dd4db2ee2f2"
+  integrity sha512-Nga8eA0ip8AQNFEUnTVTNmcLCXO/zSQJgj+0vi/80VTiiSSDU9eBKhxPPXvLY+nvTX4XD1+mbJASkgZtS6yWOQ==
+  dependencies:
+    "@guscrawford.com/cleye" "^0.0.3-beta"
+    "@guscrawford.com/json-xform" "1.5.1"
+    open "^6.4.0"
+
 "@guscrawford.com/json-xform@1.5.1":
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-1.5.1.tgz#e0b03d5312ab6a49028cc108840d6abf6f755263"
   integrity sha512-hdy4LgIYd2ODLDENpQgS7onW8My8nXVyhr8Nl92eZKNLoOuwZNDFIc25PnWQ4Rn7VjP75c7p/h5CEMC3V1XFSw==
+
+"@guscrawford.com/json-xform@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-1.5.2.tgz#37c0b2f8d2c0803df9a65b2b569b6cec3603174c"
+  integrity sha512-woToi0octZvNqWCqpQQNYYHmnGHQnZHYXA2/W4114odHxdCFPmHCEwbj1ZDI/EJyB5tS0bRhpyAsYfvC3iBZAQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -62,6 +81,11 @@
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.4.0.tgz#018c56db42400c092aae47de21f710b7f04e4b06"
   integrity sha512-6pUnBg6DuSB55xnxJ5+gW9JOkFrPsXkYAuqqEE8oyrpgDiPQ+TZ+1Zt4S+CHcRJcxyNYXeIXG4vHSzdF6y9Uvw==
+
+"@types/jsontoxml@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/jsontoxml/-/jsontoxml-1.0.1.tgz#ddec23eb7be0e5d9b6f305c1eb5b38de43d64fc9"
+  integrity sha512-Vv8V/nKxSLK/3lErSb3c6pMZWv/KudTKFnUA6/2xZO9jszRUJqMv6SHTb7acQp1wWUAa7RP3KYFic8zSRdDxlA==
 
 "@types/lodash@^4.14.110":
   version "4.14.139"
@@ -846,12 +870,24 @@ json-parse-better-errors@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
 
+json2yaml@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/json2yaml/-/json2yaml-1.1.0.tgz#5414d907f9816586b80c513ec2e3aeb2ab819a6c"
+  integrity sha1-VBTZB/mBZYa4DFE+wuOusquBmmw=
+  dependencies:
+    remedial "1.x"
+
 jsonfile@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
   integrity sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=
   optionalDependencies:
     graceful-fs "^4.1.6"
+
+jsontoxml@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jsontoxml/-/jsontoxml-1.0.1.tgz#07fff7f6bfbfa1097d779aec7f041b5046075e70"
+  integrity sha512-dtKGq0K8EWQBRqcAaePSgKR4Hyjfsz/LkurHSV3Cxk4H+h2fWDeaN2jzABz+ZmOJylgXS7FGeWmbZ6jgYUMdJQ==
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
@@ -1259,6 +1295,11 @@ regex-not@^1.0.0, regex-not@^1.0.2:
   dependencies:
     extend-shallow "^3.0.2"
     safe-regex "^1.1.0"
+
+remedial@1.x:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/remedial/-/remedial-1.0.8.tgz#a5e4fd52a0e4956adbaf62da63a5a46a78c578a0"
+  integrity sha512-/62tYiOe6DzS5BqVsNpH/nkGlX45C/Sp6V+NtiN6JQNS1Viay7cWkazmRkrQrdFj2eshDe96SIQNIoMxqhzBOg==
 
 renamer@^1.1.2:
   version "1.1.3"

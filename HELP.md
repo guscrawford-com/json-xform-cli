@@ -22,7 +22,7 @@
 
 ## DESCRIPTION
 
-Transform **JSON** data as specified by [json-xform](https://github.com/guscrawford-com/json-xform/blob/1.0.0-beta/README.md):
+Transform **JSON** data as specified by [json-xform](https://github.com/guscrawford-com/json-xform-cli/blob/master/README.md):
 
 *JSON data* is the contents of  ```<template-file>``` if provided or the contents of `stdin` if ```<template-file>``` otherwise.
 
@@ -53,6 +53,22 @@ echo {"test":"${example}"} | xform --vars=example:"Mic Check"
 ### ```--out=<output-file>```
 
 Specify the filename to write transformed output to; `<stdout>` otherwise
+
+If a supported output format can be inferred from a file-extension on the `--out` flag it will be used
+
+- *.yml
+- *.xml
+- JSON is the default for any other extension
+
+### ```-X=<output-format>```
+### ```--xml=<output-format>```
+
+Specify the format to write transformed output in
+
+Supported output formats:
+
+- `--format=yaml`
+- `--format=xml`
 
 ## Examples
 
@@ -134,7 +150,7 @@ $> xform package.json --out dist/package.json
 
 ## SEE ALSO
 
-[json-xform](https://www.npmjs.com/package/@guscrawford.com/json-xform/v/1.0.0-beta)
+[json-xform](https://www.npmjs.com/package/@guscrawford.com/json-xform)
 
 </body>
 </html>

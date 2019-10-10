@@ -1,14 +1,14 @@
 import { Stream } from "stream";
 
 export const KEY = 0, VAL = 1;
-export function parseVars(targetJson:any, vars:string) {
+export function parseVars(targetJson:any, vars:string, directive:string="@xform:var") {
     if (!vars) return targetJson;
     let varExtension:{[key:string]:any} = {};
     vars.split(',').forEach(variableDef=>{
         let kvp = variableDef.split(':');
         varExtension[kvp[KEY] as string] = infer(kvp[VAL]);
     });
-    targetJson["@xform:var"] = {...targetJson["@xform:var"],...varExtension};
+    targetJson[directive] = {...targetJson[directive],...varExtension};
     return targetJson;
 }
 
@@ -45,4 +45,8 @@ export async function read(stream:Stream, cb?:(err:Error|null, data:string)=>any
     catch (e) {
         if (typeof cb === 'function') return Promise.reject(cb(e,''));
     }
+}
+// https://regex101.com/r/B8WkuX/1
+export function stripComments(src:string) {
+    return src.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm,'');
 }

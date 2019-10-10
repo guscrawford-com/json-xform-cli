@@ -28,75 +28,253 @@ $>yarn add @guscrawford/json-xform-cli -D
 $>xform package.json --out dist/package.json
 ```
 
-*where **package.json** is formed as so:*
+## Examples
+
+### Variable Replacement
+
+Use `@xform:var` to define blocks of variables you can scope; use interpolation syntax like `${<variable-reference>}`, and filters like `${filter(<variable-reference>)}` to manipulate data:
+
+*`@{<ref>}` suppresses auto-inference (forcing the `number-a` example property to be a string interpretation), use `number` filter to force string values to numerics.*
+
+🎯 ***Only** top-level `@xform:var` blocks are parsed or refered to
+
+**Input**
 
 ```
 {
-  "@xform:remove": {
-    "scripts": "scripts",
-    "devDependencies": "devDependencies"
+  "@xform:var":{
+    "something":"this",
+    "number-lit":55,
+    "number-str":"65"
   },
-  "@xform:merge": {
-    "bin.xform": "bin/xform"
-  },
-  "name": "@guscrawford.com/json-xform-cli",
-  "version": "0.1.0-beta",
-  "description": "A cli that transforms JSON",
-  "main": "xform-cli.ts",
-  "repository": "https://github.com/guscrawford-com/json-xform-cli",
-  "author": "Gus Crawford <crawford.gus@gmail.com>",
-  "license": "MIT",
-  "bin": {
-    "xform": "dist/bin/xform-cli.js"
-  },
-  "devDependencies": {
-    "@types/jasmine": "^3.3.13",
-    "cpy-cli": "^2.0.0",
-    "jasmine": "^3.4.0",
-    "renamer": "^1.1.2",
-    "rimraf": "^2.6.3",
-    "typedoc": "^0.14.2",
-    "typescript": "^3.5.2"
-  },
-  "scripts": {
-    "binary": "cpy config/bin/xform dist/bin",
-    "package": "yarn build && yarn test:run package.json --out dist/package.json && cpy README.md dist && cpy CHANGELOG.md dist && yarn binary",
-    "docs": "rimraf docs && typedoc --out docs ./src",
-    "build": "rimraf dist && tsc",
-    "test": "tsc -p tsconfig.jasmine.json && jasmine \"test/**/*[sS]pec.js\"",
-    "build:run": "yarn build && yarn test:run",
-    "test:run": "node dist/lib/xform-cli.js",
-    "release": "yarn package && cd dist && yarn publish --access=public"
-  },
-  "dependencies": {
-    "@guscrawford.com/cleye": "^0.0.2-alpha",
-    "@guscrawford.com/json-xform": "^0.1.0-beta"
-  }
+  "do": "${something}",
+  "number-a":"@{number-lit}",
+  "number-b":"${number(number-str)}"
 }
-
 ```
 
-*output:*
+**Output**
 
 ```
 {
-  "name": "@guscrawford.com/json-xform-cli",
-  "version": "0.1.0-beta",
-  "description": "A cli that transforms JSON",
-  "main": "xform-cli.ts",
-  "repository": "https://github.com/guscrawford-com/cleye.git",
-  "author": "Gus Crawford <crawford.gus@gmail.com>",
-  "license": "MIT",
-  "bin": {
-    "xform": "bin/xform"
-  },
-  "dependencies": {
-    "@guscrawford.com/cleye": "^0.0.2-alpha",
-    "@guscrawford.com/json-xform": "1.5.1"
-  }
+  "do": "this",
+  "number-a":"55",
+  "number-b":65
 }
+```
+
+### Sorting
+
+Sort your JSON
+
+**Input**
 
 ```
+{
+  "@xform:sort":{
+    "values":"desc",
+    "moreValues":"id asc"
+  },
+  "values": [3,1,5],
+  "moreValues":[
+    { "id": 7, "name":"Crawford"},
+    { "id": 3, "name":"Malcolm"},
+    { "id": 2, "name":"Angus"}
+  ]
+}
+```
+
+**Output**
+
+```
+{
+  "values": [5,3,1],
+  "moreValues":[
+    { "id": 2, "name":"Angus"},
+    { "id": 3, "name":"Malcolm"},
+    { "id": 7, "name":"Crawford"}
+  ]
+}
+```
+
+### Deep Merging
+
+Merge deep; masking structures on to others.
+
+**Input**
+
+```
+{
+  "@xform:merge":{
+    "compilerOptions":{
+      "paths":{
+        "@org/package":[
+          "org-package/src"
+        ]
+      }
+    }
+  },
+  "compilerOptions":{
+    "target":"es5"
+  }
+}
+```
+
+**Output**
+
+```
+{
+  "compilerOptions":{
+    "target":"es5",
+    "paths":{
+      "@org/package":[
+        "org-package/src"
+      ]
+    }
+  }
+}
+```
+
+### Removal
+
+Remove items from JSON
+
+**Input**
+
+```
+{
+  "@xform:remove":{
+    "scripts":{
+      "this-script"
+    },
+    "scripts.this-also"
+  },
+  "scripts":{
+    "this-script":"needs to go",
+    "this-also":"needs to go"
+  }
+}
+```
+
+**Output**
+
+```
+{
+  "scripts":{}
+}
+```
+
+### Conditionals
+
+Use inline "filters" like `if(<js-like-falsy-truthy-conditional>,<resolve-true>,<resolve-falsy>)` and `gt(<ref-a>,<ref-b>`) to produce conditionally built JSON.
+
+*See other filters `lt`, `gte`, `lte`, `not`, `number` for further filtering references...*
+
+**Input**
+
+```
+{
+  "@xform:var":{
+    "production":true,
+    "development":false,
+    "build-prod":"ng build --prod",
+    "build-dev":"ng build"
+  },
+  "scripts":{
+    "build":"${if(gt(production,development),build-prod,build-dev)}"
+  }
+}
+```
+
+**Output**
+
+```
+{
+  "scripts":{"build":"ng build --prod"}
+}
+```
+
+
+### Iterating
+
+Use the `@xform:foreach(<iterable-var-reference>)` directive to repeat portions of JSON.
+
+*Where the value of each item in the iterable is referencable by `item`; each numerical index if available is `index` and `key` is always the key or stringified index*
+
+**Input**
+
+```
+{
+  "@xform:var":{
+    "sub-apps":["ui","backend","etc"]
+  },
+  "scripts":{
+    "@xform:foreach(sub-apps)":{
+      "test-${item}":"jasmine ${item}",
+      "build-${item}":"tsc -p ${item}.tsconfig.json",
+      "lint-${item}":"cd ${item} && npm run lint"
+    }
+  }
+}
+```
+
+**Output**
+
+```
+{
+  "scripts":{
+    "test-ui":"jasmine ui",
+    "build-ui":"tsc -p ui.tsconfig.json",
+    "lint-ui":"cd ui && npm run lint",
+    "test-backend":"jasmine backend",
+    "build-backend":"tsc -p backend.tsconfig.json",
+    "lint-backend":"cd backend && npm run lint",
+    ...
+  }
+}
+```
+
+### Importing & Extending
+
+Use `@xform:import` and `@xform:extends` to reference an external JSON file and deep-merge output on to it.
+
+* Only `@xform:extends` has a *CLI* switch
+*`@xform:extends` opens an external JSON file and parses it, which could include **json-xform** directives.*
+*`@xform:import` does likewise; however with the added step of deep-merging top-level variable declarations (`@xform:var`) onto the imported document before parsing*
+
+**Input**
+
+```
+
+
+  {
+    "@xform:import":"./external.json",
+    "@xform:var":{
+      "needed-var":"some-value"
+    },
+    "scripts":{
+      "run":"command"
+    }
+  }
+```
+
+**external.json**
+
+```
+{
+  "value":"${needed-var}"
+}
+```
+
+**Output**
+
+```
+{
+  "value":"some-value",
+  "scripts":{
+    "run":"command"
+  }
+}
 
 ## Develop & Contribute
 

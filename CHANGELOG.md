@@ -57,3 +57,19 @@ Released initial draft of *json-xform*
 
 - Brings in fixes and improvements from dependant libraries
 - Exposes `@xform:extends` directive on cli option to pass in a json to extend
+
+----
+
+***missing notes***
+
+----
+
+## 1.5.1
+### Oct 9
+#### Update Dependencies; Accept `--extends` command-line option
+
+- Brings in fixes and improvements from dependant libraries
+  - https://www.npmjs.com/package/@guscrawford.com/json-xform
+  - https://www.npmjs.com/package/@guscrawford.com/cleye
+- Allows commenting for JSON
+  - `--comments=false` or `-C=false` will disable this

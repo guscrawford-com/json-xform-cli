@@ -1,5 +1,4 @@
-import { Command } from "@guscrawford.com/cleye";
-import { CliAppInstance } from "../xform-cli";
+import { Command, CliApp } from "@guscrawford.com/cleye";
 import { join } from 'path';
 const open = require('open');
 export class HelpCommand implements Command {
@@ -7,11 +6,9 @@ export class HelpCommand implements Command {
     options = {};
     args = {};
     index = 0;
+    run = help_main;
 }
-const RegisteredHelpCommand = CliAppInstance.command(new HelpCommand());
-if (RegisteredHelpCommand.index !== -1) {
-    // console.info(CliAppInstance.binRuntime)
-    (CliAppInstance as any).cancelDefault = true;
-    let helpPath = CliAppInstance.binRuntime.split(/\/|\\/);
+function help_main(app:CliApp) {
+    let helpPath = app.binRuntime.split(/\/|\\/);
         open(join(`${helpPath.slice(0, helpPath.length-2).join('/')}/docs/html/HELP.html`));
 }
