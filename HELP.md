@@ -54,6 +54,22 @@ echo {"test":"${example}"} | xform --vars=example:"Mic Check"
 
 Specify the filename to write transformed output to; `<stdout>` otherwise
 
+If a supported output format can be inferred from a file-extension on the `--out` flag it will be used
+
+- *.yml
+- *.xml
+- JSON is the default for any other extension
+
+### ```-F=<output-format>```
+### ```--format=<output-format>```
+
+Specify the format to write transformed output in
+
+Supported output formats:
+
+- `--format=yaml`
+- `--format=xml`
+
 ## Examples
 
 ```
