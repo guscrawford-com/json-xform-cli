@@ -5,7 +5,8 @@ export class VersionCommand implements Command {
     options = {};
     args = {};
     index = 0;
+    run = version_main;
 }
 function version_main (app:CliApp) {
-    process.stdout.write(Buffer.from(pkg.version));
+    process.stdout.write(Buffer.from(`${pkg.name} - ${pkg.version}`));
 }
