@@ -90,7 +90,7 @@ function parse(command:RegisteredCommand) {
            ? Object.assign(templateWithVars(data, command.options.var as Option), {"@xform:extends":(command.options.extends as any).value})
            : templateWithVars(data, command.options.var as Option);
         // console.error(template);
-        var templater = new Templater(template);
+        var templater = new Templater(template,undefined,workingDirectory);
         var parsedTemplate = templater.parse();
         // console.error(templater);
         return parsedTemplate;
