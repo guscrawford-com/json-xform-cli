@@ -17,7 +17,7 @@
     "xform": "dist/bin/xform-cli.js"
   },
   "devDependencies": {
-    "@guscrawford.com/json-xform-cli": "^1.5.0",
+    "@guscrawford.com/json-xform-cli": "1.4.1",
     "@types/jasmine": "^3.3.13",
     "@types/jsontoxml": "^1.0.1",
     "cpy-cli": "^2.0.0",
