@@ -24,13 +24,9 @@ export class DefaultCommand implements StaticCommand {
             spinalCaseName:'remove',
             flag:'R'
         },
-        'xml':<StaticOption>{
-            spinalCaseName:'xml',
-            flag:'X'
-        },
-        'yml':<StaticOption>{
-            spinalCaseName:'ynl',
-            flag:'Y'
+        'format':<StaticOption>{
+            spinalCaseName:'format',
+            flag:'F'
         },
         'comments':<StaticOption>{
             spinalCaseName:'comments',
@@ -45,28 +41,34 @@ export class DefaultCommand implements StaticCommand {
     run = main_default;
 }
 function main_default(app:CliApp) {
-    console.info(app);
+    let fileArg:string, relPath:string[], workingDirectory:string;
+    fileArg = join(process.cwd(),((app.commands.default as Command).args.template as any).value);
+    relPath = fileArg.split(/\/|\\/);
+    relPath.pop();
+    if (!fileArg.match(/^\/|([a-zA-Z]\:)?\\/)) 
+        workingDirectory = join(process.cwd(),relPath.join('/'));
+    else workingDirectory = relPath.join('/');
     if (((app.commands.default as Command).args.template as any).value)
         readFile(
             join(process.cwd(),((app.commands.default as Command).args.template as any).value),
             {encoding:'utf8'},
-            transform(app.commands.default as RegisteredCommand)
+            transform(app.commands.default as RegisteredCommand, workingDirectory)
         );
     else if (!((app.commands.default as Command).args.template as any).value)
-        read(process.stdin, transform(app.commands.default as RegisteredCommand));
+        read(process.stdin, transform(app.commands.default as RegisteredCommand, workingDirectory));
 }
 const templateWithVars = (data:string, varOption:Option) => parseVars(
     JSON.parse(data),
     varOption.value as string
 );
-function transform(command:RegisteredCommand) { return (err:any, data:string) => {
+function transform(command:RegisteredCommand, workingDirectory:string) { return (err:any, data:string) => {
     if (err) throw err;
     let allowComments = !command.options.comments || command.options.comments && (command.options.comments as any).value !== 'false';
     if (allowComments) data = stripComments(data);
     try {
-        let parsedData = parse(command)(data);
-        let yaml = command.options.yml && typeof (command.options.yml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.yml'));
-        let xml = command.options.xml && typeof (command.options.xml as any).value !== null || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.xml'));
+        let parsedData = parse(command, workingDirectory)(data);
+        let yaml = command.options.format.value && (command.options.format as any).value.match(/ya?ml/i) || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.yml'));
+        let xml = command.options.format.value && (command.options.format as any).value.match(/xml/i) || ((command.options.out as any).value && ((command.options.out as any).value as string).endsWith('.xml'));
         
         if (xml) parsedData = fromJson(parsedData, {removeIllegalNameCharacters:true});
         else if (yaml) parsedData = jsonYml.stringify(parsedData);
@@ -83,16 +85,13 @@ function transform(command:RegisteredCommand) { return (err:any, data:string) =>
         throw e;
     }
 }; }
-function parse(command:RegisteredCommand) {
+function parse(command:RegisteredCommand, workingDirectory:string) {
     return (data:string)=> {
-        // console.error(new Templater({"@xform:extends":'example/sample.json'}).parse())
         var template = (command.options.extends as any).value
            ? Object.assign(templateWithVars(data, command.options.var as Option), {"@xform:extends":(command.options.extends as any).value})
            : templateWithVars(data, command.options.var as Option);
-        // console.error(template);
         var templater = new Templater(template,undefined,workingDirectory);
         var parsedTemplate = templater.parse();
-        // console.error(templater);
         return parsedTemplate;
     }
 }
