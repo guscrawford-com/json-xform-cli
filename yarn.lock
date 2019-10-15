@@ -7,24 +7,16 @@
   resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-1.0.0.tgz#4859d0a475cbc4d789d603655717b5f4b91bf240"
   integrity sha512-62ro+jEtE1Aj+Rce76rO3iA1Nck+TXyaxnbxlYaf/4nUZ5blGbIve26L0nKfPGo01FpBcFL5kJzctP9z278kxA==
 
-"@guscrawford.com/cleye@^0.0.3-beta":
-  version "0.0.3-beta"
-  resolved "https://registry.yarnpkg.com/@guscrawford.com/cleye/-/cleye-0.0.3-beta.tgz#d742d360167679eae01eb4ca0b5ccb4ccfbe911d"
-  integrity sha512-SkKIIy6etfaiLZbMQ3iSU+ZMOELrl3IA5v279O+klfWcpEQXIVPPvLVdiKwnEpo6LHefS7GuZRM8qvUPHeD87Q==
-
-"@guscrawford.com/json-xform-cli@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform-cli/-/json-xform-cli-1.4.1.tgz#21a2233a95c301259d945893728d2d23faa8dc2f"
-  integrity sha512-Gx4eXOLUPqRNezlhbH8dFN/vwcI2OzHDkljN341EHqtF1OIe9/xVzKxEjyLI17ukaUQSIivDP40QO3b6fleJAg==
+"@guscrawford.com/json-xform-cli@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform-cli/-/json-xform-cli-1.6.0.tgz#0f0f9cd91c89c02475d367d47b55b8400550ab03"
+  integrity sha512-8dsHKUAALiLAFUzEBgvtChWF4A0mKspLhkwylCxkfG72Th1XIXLu31UPudJZMr2bOC7BdUCBsJZpe+A68p2/RA==
   dependencies:
-    "@guscrawford.com/cleye" "^0.0.3-beta"
-    "@guscrawford.com/json-xform" "1.5.0"
+    "@guscrawford.com/cleye" "1.0.0"
+    "@guscrawford.com/json-xform" "1.5.2"
+    json2yaml "^1.1.0"
+    jsontoxml "^1.0.1"
     open "^6.4.0"
-
-"@guscrawford.com/json-xform@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@guscrawford.com/json-xform/-/json-xform-1.5.0.tgz#5324ef828b8181dba6dd3c12abbe9dc04bc3539d"
-  integrity sha512-EEbUBZYIvl+VE9jaDkpqgOtgi+vJpcpU0sjFI9Kqhx4OyaGgrr6BqMxmDW96eIPSuOyKnq7bK/mV7G8YHNDTlw==
 
 "@guscrawford.com/json-xform@1.5.2":
   version "1.5.2"

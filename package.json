@@ -4,20 +4,21 @@
     "devDependencies": "devDependencies"
   },
   "@xform:merge": {
-    "bin.xform": "bin/xform"
+    "bin.xform": "bin/xform",
+    "main":"lib/xform-cli.js"
   },
   "name": "@guscrawford.com/json-xform-cli",
   "version": "1.5.1",
   "description": "A CLI that transforms JSON",
-  "main": "xform-cli.ts",
+  "main": "dist/lib/xform-cli.js",
   "repository": "https://github.com/guscrawford-com/json-xform-cli",
   "author": "Gus Crawford <crawford.gus@gmail.com>",
   "license": "MIT",
   "bin": {
-    "xform": "dist/bin/xform-cli.js"
+    "xform": "dist/bin/xform"
   },
   "devDependencies": {
-    "@guscrawford.com/json-xform-cli": "1.4.1",
+    "@guscrawford.com/json-xform-cli": "1.6.0",
     "@types/jasmine": "^3.3.13",
     "@types/jsontoxml": "^1.0.1",
     "cpy-cli": "^2.0.0",
