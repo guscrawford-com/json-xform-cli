@@ -7,7 +7,7 @@
     "bin.xform": "bin/xform"
   },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "A CLI that transforms JSON",
   "main": "xform-cli.ts",
   "repository": "https://github.com/guscrawford-com/json-xform-cli",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@guscrawford.com/cleye": "1.0.0",
-    "@guscrawford.com/json-xform": "1.5.2",
+    "@guscrawford.com/json-xform": "1.5.3",
     "json2yaml": "^1.1.0",
     "jsontoxml": "^1.0.1",
     "open": "^6.4.0"

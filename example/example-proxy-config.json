@@ -1,0 +1,12 @@
+{
+    "@xform:var":{
+        "url-map":{
+            "api":"http://127.0.0.1:3000"
+        }
+    },
+    "@xform:foreach(url-map)":{
+        "/${item.key}":{
+            "target":"${item}"
+        }
+    }
+}
