@@ -12,6 +12,8 @@
 
 # xform
 
+### 1.6.1
+
 ## NAME
 
 *default* - Transform **JSON** data from `stdin`, or as specified by ```[<template-file>]```
