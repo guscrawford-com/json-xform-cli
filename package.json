@@ -8,7 +8,7 @@
     "main":"lib/xform-cli.js"
   },
   "name": "@guscrawford.com/json-xform-cli",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "A CLI that transforms JSON",
   "main": "dist/lib/xform-cli.js",
   "repository": "https://github.com/guscrawford-com/json-xform-cli",
