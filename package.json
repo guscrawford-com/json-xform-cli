@@ -23,7 +23,7 @@
     "@types/jsontoxml": "^1.0.1",
     "cpy-cli": "^2.0.0",
     "jasmine": "^3.4.0",
-    "marked": "^0.6.3",
+    "marked": "^0.7.0",
     "renamer": "^1.1.2",
     "rimraf": "^2.6.3",
     "typedoc": "^0.14.2",
